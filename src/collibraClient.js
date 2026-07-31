@@ -23,12 +23,17 @@ class CollibraClient {
   async authenticate() {
     try {
       // Test connectivity using Basic Auth
+      const agent = new https.Agent({
+          rejectUnauthorized: false
+      });
+      
       const response = await axios.post(
         `https://${this.config.domain}/rest/2.0/auth/sessions`,
         {
           username: this.config.username,
           password: this.config.password
-        }
+        },
+        { httpsAgent: agent }
       );
       console.log('✓ Authenticated successfully');
       return true;
