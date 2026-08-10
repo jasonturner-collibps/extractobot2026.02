@@ -18,7 +18,17 @@ const question = (query) => new Promise((resolve) => {
 
 const testConnectivity = async (domain, username, password) => {
   try {
-    const response = await axios.post(`https://${domain}/rest/2.0/auth/sessions`, { username, password });
+    const agent = new https.Agent({
+  rejectUnauthorized: false
+});
+    const response = await axios.post(
+  `https://${this.config.domain}/rest/2.0/auth/sessions`,
+  {
+    username: this.config.username,
+    password: this.config.password
+  },
+  { httpsAgent: agent } // Pass the agent here
+);
     if (response.status === 200) {
       console.log('Authentication successful.');
       return true;
