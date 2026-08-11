@@ -2,6 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const axios = require('axios');
 const path = require('path');
+const https = require('https');
 
 const configPath = path.join(__dirname, '..', 'config.json');
 let rl;  // Declare rl outside, so it's not duplicated.
