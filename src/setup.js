@@ -23,10 +23,9 @@ const testConnectivity = async (domain, username, password) => {
   rejectUnauthorized: false
 });
     const response = await axios.post(
-  `https://${this.config.domain}/rest/2.0/auth/sessions`,
+  `https://${domain}/rest/2.0/auth/sessions`,
   {
-    username: this.config.username,
-    password: this.config.password
+    username, password
   },
   { httpsAgent: agent } // Pass the agent here
 );
